@@ -8,6 +8,7 @@
 
 Este projeto tem como objetivo estudar, implementar e apresentar o algoritmo de ordenação **Bucket Sort**, destacando sua lógica de funcionamento, análise de complexidade e caso de uso prático.
 
+Link para slides: https://tree-frog-0wqg6x.my.canva.site
 ---
 
 ### Integrantes
@@ -26,5 +27,5 @@ Este projeto tem como objetivo estudar, implementar e apresentar o algoritmo de 
 ```text
 .
 ├── main.c              # Código-fonte principal com a implementação do Bucket Sort em C
-├── apresentacao.pptx   # [Em breve] Slides/Material utilizado durante o seminário
+├── Bucket-Sort.pdf     # Slides/Material utilizado durante o seminário
 └── README.md           # Documentação do repositório
