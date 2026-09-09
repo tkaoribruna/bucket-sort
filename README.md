@@ -16,7 +16,7 @@ Este projeto tem como objetivo estudar, implementar e apresentar o algoritmo de 
 |-----------------------------------|----------------------------------------------------------------------|---------------------------------------------|
 | Bruna Kaori Takuti                | <img src="https://github.com/tkaoribruna.png" width="100"/>          | https://github.com/tkaoribruna              |
 | Daniel Durante Francisco Dias     | <img src="https://github.com/Dandurant.png" width="100"/>            | https://github.com/Dandurant                |
-| Igor Rocha Cantieri               | <img src="https://github.com/Dandurant.png" width="100"/>            | https://github.com/lucasppinheiro           |
+| Igor Rocha Cantieri               | <img src="https://github.com/IgorRochaCantieri.png" width="100"/>    | https://github.com/IgorRochaCantieri        |
 | Lucas Gabriel Pinheiro dos Santos | <img src="https://github.com/lucasppinheiro.png" width="100"/>       | https://github.com/lucasppinheiro           |
 | Rafael Moreira Rosa               | <img src="https://github.com/FaelMoreiraRosa.png" width="100"/>      | https://github.com/FaelMoreiraRosa          |
 
