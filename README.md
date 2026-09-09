@@ -88,3 +88,5 @@ Este exemplo foi feito para trabalhar com o vetor que está no arquivo `main.c`.
 ├── main.c              # Código-fonte principal com a implementação do Bucket Sort em C
 ├── Bucket-Sort.pdf     # Slides/Material utilizado durante o seminário
 └── README.md           # Documentação do repositório
+
+```
