@@ -1,0 +1,42 @@
+/* ==========================================================
+   variables.css
+   Design tokens. Mude cores, fontes ou o max-width do site
+   inteiro editando só este arquivo.
+   ========================================================== */
+:root{
+  /* cores base */
+  --bg:#08070c;
+  --bg-elev:#100e1a;
+  --bg-elev-2:#151223;
+
+  /* acentos */
+  --purple:#6c5ce7;
+  --purple-deep:#4b3fc4;
+  --blue:#4f5bd5;
+  --violet-glow:#a78bfa;
+
+  /* texto */
+  --text:#f4f2fa;
+  --text-muted:#a79fc4;
+  --text-faint:#6b6488;
+
+  /* status (usadas na tabela de complexidade) */
+  --good:#22c55e;
+  --good-bg:rgba(34,197,94,0.14);
+  --warn:#e8a33d;
+  --warn-bg:rgba(232,163,61,0.14);
+  --bad:#e0455a;
+  --bad-bg:rgba(224,69,90,0.14);
+
+  /* bordas */
+  --border:rgba(255,255,255,0.09);
+  --border-soft:rgba(255,255,255,0.06);
+
+  /* tipografia */
+  --font-display:'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body:'Inter', 'Segoe UI', sans-serif;
+  --font-mono:'JetBrains Mono', 'Consolas', monospace;
+
+  /* layout */
+  --maxw:1120px;
+}

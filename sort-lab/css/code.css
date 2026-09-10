@@ -1,0 +1,37 @@
+/* ==========================================================
+   code.css
+   Abas de linguagem + janela de código da seção "Código-fonte".
+   Lógica em js/code-tabs.js.
+   ========================================================== */
+
+.code-tabs{ display:flex; gap:8px; margin-bottom:0; }
+.code-tab{
+  background:var(--bg-elev); border:1px solid var(--border); border-bottom:none;
+  padding:10px 18px; border-radius:10px 10px 0 0;
+  font-family:var(--font-mono); font-size:13.5px; color:var(--text-faint);
+}
+.code-tab.active{ color:var(--text); background:var(--bg-elev-2); }
+
+.code-window{
+  background:var(--bg-elev-2); border:1px solid var(--border); border-radius:0 12px 12px 12px;
+  overflow:hidden;
+}
+.code-window-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; border-bottom:1px solid var(--border-soft);
+}
+.code-window-head span{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); }
+.code-window pre{
+  margin:0; padding:22px; overflow-x:auto;
+  font-family:var(--font-mono); font-size:13.5px; line-height:1.65;
+  color:#dcd9ee;
+}
+.code-block{ display:none; }
+.code-block.active{ display:block; }
+
+/* cores dos tokens (syntax highlight manual, sem lib externa) */
+.tok-kw{ color:#c792ea; }
+.tok-fn{ color:#82aaff; }
+.tok-str{ color:#c3e88d; }
+.tok-com{ color:#6b6488; font-style:italic; }
+.tok-num{ color:#f78c6c; }

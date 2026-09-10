@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sort/Lab — Módulos de Algoritmos de Ordenação</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Cada arquivo cuida de uma parte só; veja o README.md para o mapa completo. -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/module.css">
+<link rel="stylesheet" href="css/visualizer.css">
+<link rel="stylesheet" href="css/code.css">
+<link rel="stylesheet" href="css/slides.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#/" class="brand">sort<span>/</span>lab</a>
+    <nav class="site-nav">
+      <a href="#/">Módulos</a>
+      <a href="#/bucket-sort">Bucket Sort</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main id="view-home">
+  <section class="hero">
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-blue"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <h1>Cada algoritmo de ordenação, em um módulo à parte.</h1>
+        <p class="lede">Um guia de estudo modular: escolha um algoritmo, entenda o conceito, veja-o rodando em um exemplo interativo e chegue até o código-fonte comentado — no seu ritmo.</p>
+        <div class="hero-actions">
+          <a href="#/bucket-sort" class="btn btn-primary">Abrir módulo de Bucket Sort</a>
+          <a href="#modules-anchor" class="btn btn-ghost">Ver todos os módulos</a>
+        </div>
+      </div>
+      <div class="bars-strip" id="heroBars" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="modules" id="modules-anchor">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Módulos</h2>
+        <span class="hint">Novos algoritmos entram nesta grade conforme os módulos ficam prontos.</span>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= MODULE: BUCKET SORT ================= -->
+<main id="view-module">
+  <nav class="module-subnav">
+    <div class="container">
+      <a href="#/" class="back">← Módulos</a>
+      <a href="#conceito" class="subnav-link">Conceito</a>
+      <a href="#funcionamento" class="subnav-link">Como funciona</a>
+      <a href="#fluxo" class="subnav-link">Fluxo</a>
+      <a href="#complexidade" class="subnav-link">Complexidade</a>
+      <a href="#forcas" class="subnav-link">Prós e contras</a>
+      <a href="#aplicacoes" class="subnav-link">Aplicações</a>
+      <a href="#codigo" class="subnav-link">Código-fonte</a>
+      <a href="#referencias" class="subnav-link">Referências</a>
+      <a href="#slides" class="subnav-link">Slides</a>
+    </div>
+  </nav>
+
+  <section class="module-hero">
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-blue"></div>
+    <div class="container module-hero-inner">
+      <p class="module-kicker">Módulo 01 · Algoritmos de distribuição</p>
+      <div class="module-title-wrap">
+        <div class="module-title-ghost">BUCKET SORT</div>
+        <h1 class="module-title">BUCKET SORT</h1>
+      </div>
+      <p class="module-dek">Um algoritmo de ordenação que troca comparações repetidas por organização espacial: espalhe os dados em grupos, ordene cada grupo por conta própria, depois junte tudo na ordem certa.</p>
+    </div>
+  </section>
+
+  <!-- Conceito -->
+  <section class="block" id="conceito">
+    <div class="container">
+      <p class="eyebrow-index">01</p>
+      <h2>Introdução e conceito</h2>
+      <p class="intro">Bucket sort é um algoritmo de ordenação por distribuição: em vez de comparar elementos entre si o tempo todo, ele primeiro espalha os dados de um array em vários grupos menores — os <em>baldes</em> (buckets) — e só depois organiza o que caiu em cada grupo, geralmente com um algoritmo mais simples como o insertion sort.</p>
+
+      <div class="pair-grid">
+        <div class="concept-card">
+          <span class="num">1</span>
+          <h3>Espalhar (Scatter)</h3>
+          <p>O conjunto de dados original é dividido em subconjuntos — os baldes. Uma função de mapeamento calcula, a partir do valor de cada elemento, em qual balde ele deve cair, com base no intervalo de valores coberto por aquele balde.</p>
+        </div>
+        <div class="concept-card">
+          <span class="num">2</span>
+          <h3>Juntar (Gather)</h3>
+          <p>Cada balde é ordenado individualmente com um algoritmo secundário (insertion sort, quicksort, ou o próprio bucket sort aplicado de forma recursiva). No fim, os baldes são percorridos em ordem e concatenados, formando a lista final ordenada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona / Visualizer -->
+  <section class="block" id="funcionamento">
+    <div class="container">
+      <p class="eyebrow-index">02</p>
+      <h2>Como funciona, passo a passo</h2>
+      <p class="intro">Use os controles abaixo para avançar pelas quatro fases do algoritmo sobre um exemplo real, ou gere um novo array aleatório para testar com outros valores.</p>
+
+      <div class="viz-panel">
+        <div class="viz-toolbar">
+          <span class="viz-phase" id="vizPhaseLabel">Fase 1 de 4 — Array original</span>
+          <div class="viz-dots" id="vizDots"></div>
+          <button class="btn btn-ghost btn-sm" id="vizShuffleBtn">🔀 Aleatorizar array</button>
+        </div>
+        <div class="viz-stage" id="vizStage"></div>
+        <div class="viz-controls">
+          <span style="font-size:13px;color:var(--text-faint);" id="vizHint"></span>
+          <div class="viz-nav-btns">
+            <button class="btn btn-ghost btn-sm" id="vizPrevBtn">← Anterior</button>
+            <button class="btn btn-primary btn-sm" id="vizNextBtn">Próximo →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fluxo de execução -->
+  <section class="block" id="fluxo">
+    <div class="container">
+      <p class="eyebrow-index">03</p>
+      <h2>Fluxo de execução</h2>
+      <p class="intro">Do ponto de vista da implementação, o algoritmo percorre sempre as mesmas quatro etapas, nesta ordem.</p>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <span class="flow-num">1</span>
+          <h3>Inicialização</h3>
+          <p>Criação de N baldes vazios, normalmente como listas dinâmicas, prontos para receber os elementos.</p>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">2</span>
+          <h3>Distribuição</h3>
+          <p>Iteração sobre o array de entrada, inserindo cada elemento no balde correto de acordo com seu valor.</p>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">3</span>
+          <h3>Ordenação</h3>
+          <p>Aplicação de um algoritmo de ordenação individual em cada um dos baldes preenchidos.</p>
+        </div>
+        <div class="flow-card">
+          <span class="flow-num">4</span>
+          <h3>Concatenação</h3>
+          <p>Junção sequencial de todos os baldes, já ordenados, para compor o array final.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complexidade -->
+  <section class="block" id="complexidade">
+    <div class="container">
+      <p class="eyebrow-index">04</p>
+      <h2>Complexidade do algoritmo</h2>
+      <p class="intro">O desempenho do bucket sort depende diretamente de como os valores de entrada se distribuem entre os baldes.</p>
+
+      <table class="complexity-table">
+        <thead>
+          <tr>
+            <th>Cenário</th>
+            <th>Complexidade temporal</th>
+            <th>Complexidade espacial</th>
+            <th>Condição de ocorrência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Melhor caso</td>
+            <td><span class="cx-cell cx-good">O(n + k)</span></td>
+            <td><span class="cx-cell cx-warn">O(n + k)</span></td>
+            <td>Elementos distribuídos uniformemente entre os baldes.</td>
+          </tr>
+          <tr>
+            <td>Caso médio</td>
+            <td><span class="cx-cell cx-good">O(n)</span></td>
+            <td><span class="cx-cell cx-warn">O(n + k)</span></td>
+            <td>Distribuição aleatória, sem grandes concentrações locais.</td>
+          </tr>
+          <tr>
+            <td>Pior caso</td>
+            <td><span class="cx-cell cx-bad">O(n²)</span></td>
+            <td><span class="cx-cell cx-warn">O(n + k)</span></td>
+            <td>Todos os elementos concentrados em um único balde.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="complexity-legend">
+        <span>n — número de elementos</span>
+        <span>k — número de baldes alocados</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pontos fortes e fracos -->
+  <section class="block" id="forcas">
+    <div class="container">
+      <p class="eyebrow-index">05</p>
+      <h2>Pontos fortes e fracos</h2>
+      <div class="trait-grid">
+        <div class="trait-card">
+          <div class="trait-icon">⚡</div>
+          <h3>Desempenho</h3>
+          <p>Alcança tempo linear de ordenação quando os dados de entrada seguem uma distribuição uniforme contínua — um cenário comum ao ordenar números de ponto flutuante normalizados.</p>
+        </div>
+        <div class="trait-card">
+          <div class="trait-icon">🧮</div>
+          <h3>Overhead de memória</h3>
+          <p>Exige alocação adicional para os baldes, o que torna o consumo de espaço maior do que o de algoritmos in-place, como o quicksort ou o heapsort.</p>
+        </div>
+        <div class="trait-card">
+          <div class="trait-icon">🗂️</div>
+          <h3>Sensibilidade a dados</h3>
+          <p>Se os dados estiverem muito agrupados (clustered), a eficiência cai rapidamente para o pior caso, já que um único balde acaba concentrando quase todos os elementos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aplicações práticas -->
+  <section class="block" id="aplicacoes">
+    <div class="container">
+      <p class="eyebrow-index">06</p>
+      <h2>Aplicações práticas</h2>
+      <p class="intro">Fora da sala de aula, a lógica de distribuição do bucket sort aparece em situações bem específicas.</p>
+      <div class="app-grid">
+        <div class="app-card">
+          <span class="mark">01</span>
+          <div>
+            <h3>Processamento de imagens</h3>
+            <p>Quantização de cores e construção de histogramas agrupam pixels por faixas de intensidade — essencialmente um bucket sort sobre os valores de cor.</p>
+          </div>
+        </div>
+        <div class="app-card">
+          <span class="mark">02</span>
+          <div>
+            <h3>Ordenação externa</h3>
+            <p>Quando o volume de dados não cabe em memória, dividir os registros em faixas de valor antes de processá-los em partes é uma estratégia clássica de bucketing.</p>
+          </div>
+        </div>
+        <div class="app-card">
+          <span class="mark">03</span>
+          <div>
+            <h3>Dados normalizados</h3>
+            <p>Notas, probabilidades e coordenadas normalizadas no intervalo [0,1) tendem a se distribuir de forma uniforme — exatamente a condição em que o bucket sort atinge seu melhor desempenho.</p>
+          </div>
+        </div>
+        <div class="app-card">
+          <span class="mark">04</span>
+          <div>
+            <h3>Etapa do radix sort</h3>
+            <p>Cada passada do radix sort — ao agrupar números por dígito — é, na prática, uma aplicação de bucket sort com dez baldes fixos.</p>
+          </div>
+        </div>
+        <div class="app-card">
+          <span class="mark">05</span>
+          <div>
+            <h3>Particionamento por faixas</h3>
+            <p>Bancos de dados distribuídos usam range partitioning para direcionar registros a diferentes nós conforme a faixa de valor da chave — a mesma ideia de mapeamento em baldes.</p>
+          </div>
+        </div>
+        <div class="app-card">
+          <span class="mark">06</span>
+          <div>
+            <h3>Pré-ordenação paralela</h3>
+            <p>Como os baldes são independentes entre si, cada um pode ser ordenado em paralelo — útil em implementações que exploram múltiplos núcleos ou GPUs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Código-fonte -->
+  <section class="block" id="codigo">
+    <div class="container">
+      <p class="eyebrow-index">07</p>
+      <h2>Código-fonte</h2>
+      <p class="intro">Implementação de referência em dois idiomas, usando cinco baldes distribuídos linearmente entre o menor e o maior valor do array.</p>
+
+      <div class="code-tabs">
+        <button class="code-tab active" data-lang="js">JavaScript</button>
+        <button class="code-tab" data-lang="py">Python</button>
+      </div>
+      <div class="code-window">
+        <div class="code-window-head">
+          <span id="codeFileName">bucket-sort.js</span>
+          <button class="btn btn-ghost btn-sm" id="copyCodeBtn">Copiar</button>
+        </div>
+        <div class="code-block active" data-lang="js"><pre><span class="tok-com">// Ordena números distribuindo-os em baldes por intervalo de valor</span>
+<span class="tok-kw">function</span> <span class="tok-fn">bucketSort</span>(arr, bucketCount = <span class="tok-num">5</span>) {
+  <span class="tok-kw">if</span> (arr.length <= <span class="tok-num">1</span>) <span class="tok-kw">return</span> arr;
+
+  <span class="tok-kw">const</span> min = Math.<span class="tok-fn">min</span>(...arr);
+  <span class="tok-kw">const</span> max = Math.<span class="tok-fn">max</span>(...arr);
+  <span class="tok-kw">const</span> range = (max - min + <span class="tok-num">1</span>) / bucketCount;
+  <span class="tok-kw">const</span> buckets = Array.<span class="tok-fn">from</span>({ length: bucketCount }, () => []);
+
+  <span class="tok-com">// 1. Scatter: cada valor cai no balde do seu intervalo</span>
+  <span class="tok-kw">for</span> (<span class="tok-kw">const</span> value <span class="tok-kw">of</span> arr) {
+    <span class="tok-kw">let</span> idx = Math.<span class="tok-fn">floor</span>((value - min) / range);
+    <span class="tok-kw">if</span> (idx >= bucketCount) idx = bucketCount - <span class="tok-num">1</span>;
+    buckets[idx].<span class="tok-fn">push</span>(value);
+  }
+
+  <span class="tok-com">// 2. Sort + 3. Gather: ordena cada balde e concatena tudo</span>
+  <span class="tok-kw">return</span> buckets.<span class="tok-fn">flatMap</span>(bucket => bucket.<span class="tok-fn">sort</span>((a, b) => a - b));
+}</pre></div>
+        <div class="code-block" data-lang="py"><pre><span class="tok-com"># Ordena números distribuindo-os em baldes por intervalo de valor</span>
+<span class="tok-kw">def</span> <span class="tok-fn">bucket_sort</span>(arr, bucket_count=<span class="tok-num">5</span>):
+    <span class="tok-kw">if</span> len(arr) <= <span class="tok-num">1</span>:
+        <span class="tok-kw">return</span> arr
+
+    minimum, maximum = min(arr), max(arr)
+    bucket_range = (maximum - minimum + <span class="tok-num">1</span>) / bucket_count
+    buckets = [[] <span class="tok-kw">for</span> _ <span class="tok-kw">in</span> range(bucket_count)]
+
+    <span class="tok-com"># 1. Scatter: cada valor cai no balde do seu intervalo</span>
+    <span class="tok-kw">for</span> value <span class="tok-kw">in</span> arr:
+        index = int((value - minimum) // bucket_range)
+        index = min(index, bucket_count - <span class="tok-num">1</span>)
+        buckets[index].append(value)
+
+    <span class="tok-com"># 2. Sort + 3. Gather: ordena cada balde e concatena tudo</span>
+    result = []
+    <span class="tok-kw">for</span> bucket <span class="tok-kw">in</span> buckets:
+        result.extend(sorted(bucket))
+    <span class="tok-kw">return</span> result</pre></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Referências -->
+  <section class="block" id="referencias">
+    <div class="container">
+      <p class="eyebrow-index">08</p>
+      <h2>Referências</h2>
+      <p class="intro">Fontes usadas para embasar as definições, o pseudocódigo e as classes de complexidade apresentadas neste módulo.</p>
+      <div class="ref-list">
+        <div class="ref-item">
+          <span class="ref-idx">01</span>
+          <div><span class="meta">CORMEN, T. H.; LEISERSON, C. E.; RIVEST, R. L.; STEIN, C.</span> Introduction to Algorithms. 4. ed. Cambridge: MIT Press, 2022. Seção 8.4 — Bucket sort.</div>
+        </div>
+        <div class="ref-item">
+          <span class="ref-idx">02</span>
+          <div><span class="meta">KNUTH, D. E.</span> The Art of Computer Programming, Volume 3: Sorting and Searching. 2. ed. Boston: Addison-Wesley, 1998.</div>
+        </div>
+        <div class="ref-item">
+          <span class="ref-idx">03</span>
+          <div><span class="meta">SEDGEWICK, R.; WAYNE, K.</span> Algorithms. 4. ed. Boston: Addison-Wesley, 2011.</div>
+        </div>
+        <div class="ref-item">
+          <span class="ref-idx">04</span>
+          <div>Bucket sort. <span class="meta">In:</span> Wikipedia, a enciclopédia livre. Disponível em: <a href="https://en.wikipedia.org/wiki/Bucket_sort" target="_blank" rel="noopener">en.wikipedia.org/wiki/Bucket_sort</a>. Acesso em: set. 2026.</div>
+        </div>
+        <div class="ref-item">
+          <span class="ref-idx">05</span>
+          <div>Bucket Sort — Data Structures and Algorithms Tutorials. <span class="meta">GeeksforGeeks.</span> Disponível em: <a href="https://www.geeksforgeeks.org/dsa/bucket-sort-2/" target="_blank" rel="noopener">geeksforgeeks.org</a>. Acesso em: set. 2026.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slides -->
+  <section class="block" id="slides">
+    <div class="container">
+      <p class="eyebrow-index">09</p>
+      <h2>Slides originais</h2>
+      <p class="intro">A apresentação em que este módulo foi baseado. Clique em qualquer slide para ampliar, ou adicione novos slides ao final da fila.</p>
+      <div class="slides-grid" id="slidesGrid"></div>
+      <input type="file" id="slideUploadInput" accept="image/*" multiple style="display:none;">
+      <p class="slides-note">Slides adicionados por upload ficam disponíveis apenas nesta sessão do navegador — eles não são enviados a nenhum servidor.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>sort/lab — módulo Bucket Sort</span>
+      <a href="#/">Voltar aos módulos</a>
+    </div>
+  </footer>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="Slide ampliado">
+    <div class="lightbox-bar">
+      <span id="lightboxCounter">1 / 8</span>
+      <div class="lightbox-nav">
+        <button id="lightboxPrev" aria-label="Slide anterior">←</button>
+        <button id="lightboxNext" aria-label="Próximo slide">→</button>
+      </div>
+      <button class="lightbox-close" id="lightboxClose">Fechar ✕</button>
+    </div>
+  </div>
+</div>
+
+<!--
+  Ordem importa: modules-data.js e router.js primeiro (definem
+  MODULES / renderizam a home / tratam a rota), os demais podem
+  vir em qualquer ordem pois cada um só age se encontrar seus
+  próprios elementos na página (veja os "if (!el) return;").
+-->
+<script src="js/modules-data.js"></script>
+<script src="js/router.js"></script>
+<script src="js/hero-bars.js"></script>
+<script src="js/visualizer.js"></script>
+<script src="js/code-tabs.js"></script>
+<script src="js/slides-gallery.js"></script>
+</body>
+</html>

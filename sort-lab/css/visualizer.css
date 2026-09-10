@@ -1,0 +1,67 @@
+/* ==========================================================
+   visualizer.css
+   O demo interativo "Como funciona, passo a passo".
+   Lógica em js/visualizer.js.
+   ========================================================== */
+
+.viz-panel{
+  background:var(--bg-elev);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:30px;
+}
+.viz-toolbar{
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:14px; margin-bottom:26px;
+}
+.viz-phase{
+  font-family:var(--font-mono); font-size:13px;
+  color:var(--violet-glow);
+}
+.viz-dots{ display:flex; gap:8px; }
+.viz-dots button{
+  width:9px; height:9px; border-radius:50%;
+  background:var(--border); border:none; padding:0;
+}
+.viz-dots button.active{ background:var(--violet-glow); }
+
+.viz-stage{ min-height:260px; display:flex; align-items:center; }
+.viz-row{
+  display:flex; gap:8px; width:100%; align-items:flex-end;
+  flex-wrap:wrap; justify-content:center;
+}
+.viz-chip{
+  font-family:var(--font-mono); font-weight:600; font-size:14px;
+  background:var(--bg-elev-2); border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 4px; border-radius:8px;
+  width:44px; text-align:center;
+  transition:transform .3s ease, background .3s ease, border-color .3s ease;
+}
+
+.viz-buckets{ display:flex; gap:14px; width:100%; justify-content:center; flex-wrap:wrap; }
+.viz-bucket{
+  flex:1; min-width:110px; max-width:150px;
+  background:var(--bg-elev-2);
+  border:1px solid var(--border);
+  border-radius:12px 12px 6px 6px;
+  padding:12px 10px;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  min-height:150px;
+}
+.viz-bucket.sorted{ border-color:rgba(34,197,94,0.4); }
+.viz-bucket .range{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); margin-top:auto; padding-top:6px; }
+.viz-bucket .items{ display:flex; flex-direction:column-reverse; gap:5px; width:100%; }
+.viz-bucket .items .viz-chip{ width:100%; padding:6px 0; font-size:13px; }
+
+.viz-final{ display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; }
+.viz-final .success{
+  font-family:var(--font-mono); font-size:13px; color:var(--good);
+  background:var(--good-bg); padding:6px 14px; border-radius:20px;
+}
+
+.viz-controls{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:26px; flex-wrap:wrap; gap:14px;
+}
+.viz-nav-btns{ display:flex; gap:10px; }

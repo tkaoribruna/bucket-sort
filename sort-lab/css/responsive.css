@@ -1,0 +1,24 @@
+/* ==========================================================
+   responsive.css
+   Todos os breakpoints do site num único lugar — se for
+   ajustar o comportamento mobile, é só mexer aqui.
+   Carregado por último, depois de todo o resto, para que
+   estas regras tenham prioridade.
+   ========================================================== */
+
+@media (max-width:960px){
+  .module-grid{ grid-template-columns:repeat(2,1fr); }
+  .pair-grid{ grid-template-columns:1fr; }
+  .flow-grid{ grid-template-columns:repeat(2,1fr); }
+  .trait-grid{ grid-template-columns:1fr; }
+  .app-grid{ grid-template-columns:1fr; }
+  .slides-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media (max-width:640px){
+  .module-grid{ grid-template-columns:1fr; }
+  .flow-grid{ grid-template-columns:1fr; }
+  .hero{ padding:64px 0 40px; }
+  section.block{ padding:56px 0; }
+  .container{ padding:0 18px; }
+}
