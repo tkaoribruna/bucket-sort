@@ -1,0 +1,36 @@
+/* ==========================================================
+   layout.css
+   Cabeçalho, navegação e rodapé — os mesmos em toda página.
+   ========================================================== */
+
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(8,7,12,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border-soft);
+}
+.site-header .container{
+  display:flex; align-items:center; justify-content:space-between;
+  height:68px;
+}
+.brand{
+  font-family:var(--font-mono);
+  font-size:18px;
+  font-weight:600;
+  color:var(--text);
+}
+.brand span{ color:var(--violet-glow); }
+
+.site-nav{ display:flex; align-items:center; gap:28px; }
+.site-nav a{ font-size:14.5px; color:var(--text-muted); transition:color .15s ease; }
+.site-nav a:hover{ color:var(--text); }
+
+footer.site-footer{
+  border-top:1px solid var(--border-soft);
+  padding:28px 0 40px;
+}
+footer.site-footer .container{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:12px;
+  font-size:13px; color:var(--text-faint);
+}

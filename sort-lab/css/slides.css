@@ -1,0 +1,53 @@
+/* ==========================================================
+   slides.css
+   Galeria de slides originais + lightbox de ampliação.
+   Lógica em js/slides-gallery.js.
+   ========================================================== */
+
+.slides-grid{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;
+}
+.slide-thumb{
+  position:relative;
+  border:1px solid var(--border); border-radius:10px;
+  overflow:hidden; cursor:pointer; background:var(--bg-elev);
+  aspect-ratio:16/9;
+  transition:border-color .15s ease, transform .15s ease;
+}
+.slide-thumb:hover{ border-color:var(--violet-glow); transform:translateY(-2px); }
+.slide-thumb img{ width:100%; height:100%; object-fit:cover; }
+.slide-thumb .idx{
+  position:absolute; bottom:6px; right:8px;
+  font-family:var(--font-mono); font-size:11px;
+  background:rgba(0,0,0,0.55); padding:2px 7px; border-radius:6px;
+}
+.slide-thumb.add-slide{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; color:var(--text-faint); font-size:13px; text-align:center; padding:10px;
+  border-style:dashed;
+}
+.slide-thumb.add-slide:hover{ color:var(--violet-glow); }
+.slides-note{ margin-top:16px; font-size:12.5px; color:var(--text-faint); }
+
+/* ---------- lightbox ---------- */
+.lightbox{
+  position:fixed; inset:0; z-index:100;
+  background:rgba(4,3,8,0.92);
+  display:none; align-items:center; justify-content:center;
+  padding:40px 20px;
+}
+.lightbox.open{ display:flex; }
+.lightbox-inner{ max-width:960px; width:100%; text-align:center; }
+.lightbox-inner img{ border-radius:12px; border:1px solid var(--border); margin:0 auto; }
+.lightbox-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:18px; color:var(--text-muted); font-size:13.5px; font-family:var(--font-mono);
+}
+.lightbox-nav{ display:flex; gap:10px; }
+.lightbox-nav button{
+  background:var(--bg-elev); border:1px solid var(--border); color:var(--text);
+  width:36px; height:36px; border-radius:8px; font-size:16px;
+}
+.lightbox-close{
+  background:transparent; border:none; color:var(--text-muted); font-size:15px;
+}

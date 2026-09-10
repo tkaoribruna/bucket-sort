@@ -1,0 +1,185 @@
+/* ==========================================================
+   module.css
+   Estrutura comum a qualquer página de módulo (hoje só o
+   Bucket Sort, mas os próximos módulos reaproveitam tudo
+   isso): subnav, hero do módulo, seções e seus blocos de
+   conteúdo (conceito, fluxo, complexidade, prós/contras,
+   aplicações, referências).
+
+   Estilos específicos do visualizador e do bloco de código
+   ficam em visualizer.css e code.css.
+   ========================================================== */
+
+#view-module{ display:none; }
+
+/* ---------- subnav fixa com âncoras ---------- */
+.module-subnav{
+  position:sticky; top:68px; z-index:40;
+  background:rgba(8,7,12,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border-soft);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.module-subnav::-webkit-scrollbar{ display:none; }
+.module-subnav .container{
+  display:flex; align-items:center; gap:26px;
+  height:52px; white-space:nowrap;
+}
+.module-subnav a{
+  font-size:13.5px; color:var(--text-muted);
+  padding:4px 2px; border-bottom:2px solid transparent;
+  transition:color .15s ease, border-color .15s ease;
+}
+.module-subnav a:hover, .module-subnav a.active{
+  color:var(--text); border-color:var(--violet-glow);
+}
+.module-subnav .back{
+  color:var(--violet-glow); font-weight:600; margin-right:6px;
+}
+
+/* ---------- hero do módulo ---------- */
+.module-hero{
+  position:relative; overflow:hidden;
+  padding:80px 0 56px;
+  border-bottom:1px solid var(--border-soft);
+}
+.module-hero .blob-purple{ width:460px; height:460px; top:-200px; left:-160px; opacity:.5; }
+.module-hero .blob-blue{ width:380px; height:380px; bottom:-220px; right:-140px; opacity:.35; }
+.module-hero-inner{ position:relative; z-index:1; }
+.module-kicker{ font-size:14px; color:var(--text-muted); margin-bottom:10px; }
+
+.module-title-wrap{ position:relative; margin-bottom:18px; }
+.module-title-ghost{
+  position:absolute; inset:0;
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(46px, 9vw, 104px);
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,0.14);
+  line-height:1;
+  user-select:none;
+  z-index:0;
+}
+.module-title{
+  position:relative; z-index:1;
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(40px, 8vw, 92px);
+  line-height:1;
+}
+.module-dek{
+  max-width:600px; font-size:16.5px; color:var(--text-muted);
+  margin-top:20px;
+}
+
+/* ---------- bloco de seção genérico ---------- */
+section.block{ padding:76px 0; border-bottom:1px solid var(--border-soft); }
+section.block:last-of-type{ border-bottom:none; }
+.eyebrow-index{
+  font-family:var(--font-mono); font-size:12.5px; color:var(--text-faint);
+  margin-bottom:10px;
+}
+.block h2{ font-size:30px; margin-bottom:14px; }
+.block .intro{ font-size:16px; color:var(--text-muted); max-width:680px; margin-bottom:34px; }
+
+/* ---------- conceito: par de cards (scatter / gather) ---------- */
+.pair-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.concept-card{
+  background:var(--bg-elev);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px;
+}
+.concept-card .num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--blue));
+  font-family:var(--font-mono); font-weight:600; font-size:14px;
+  margin-bottom:16px;
+}
+.concept-card h3{ font-size:19px; margin-bottom:10px; }
+.concept-card p{ font-size:14.5px; color:var(--text-muted); }
+
+/* ---------- fluxo de execução: 4 cards numerados ---------- */
+.flow-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; }
+.flow-card{
+  background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:16px; padding:22px;
+}
+.flow-card .flow-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%;
+  background:rgba(108,92,231,0.16); color:var(--violet-glow);
+  font-family:var(--font-mono); font-weight:600; font-size:13px;
+  margin-bottom:14px;
+}
+.flow-card h3{ font-size:16.5px; margin-bottom:8px; }
+.flow-card p{ font-size:13.5px; color:var(--text-muted); }
+
+/* ---------- tabela de complexidade ---------- */
+.complexity-table{
+  width:100%; border-collapse:collapse;
+  background:var(--bg-elev); border:1px solid var(--border); border-radius:16px;
+  overflow:hidden;
+}
+.complexity-table th, .complexity-table td{
+  padding:16px 18px; text-align:left; font-size:14.5px;
+  border-bottom:1px solid var(--border-soft);
+}
+.complexity-table th{
+  font-family:var(--font-mono); font-weight:600; font-size:12.5px;
+  color:var(--text-faint);
+  background:var(--bg-elev-2);
+}
+.complexity-table tr:last-child td{ border-bottom:none; }
+.cx-cell{
+  display:inline-block; font-family:var(--font-mono); font-weight:600;
+  padding:5px 12px; border-radius:8px; font-size:14px;
+}
+.cx-good{ background:var(--good-bg); color:var(--good); }
+.cx-warn{ background:var(--warn-bg); color:var(--warn); }
+.cx-bad{ background:var(--bad-bg); color:var(--bad); }
+.complexity-legend{
+  display:flex; gap:28px; margin-top:18px; flex-wrap:wrap;
+  font-family:var(--font-mono); font-size:13px; color:var(--text-muted);
+}
+
+/* ---------- prós e contras: 3 cards ---------- */
+.trait-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
+.trait-card{
+  background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:16px; padding:26px;
+}
+.trait-icon{
+  width:42px; height:42px; border-radius:10px;
+  background:rgba(108,92,231,0.16);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px; font-size:19px;
+}
+.trait-card h3{ font-size:17px; margin-bottom:10px; }
+.trait-card p{ font-size:14px; color:var(--text-muted); }
+
+/* ---------- aplicações práticas ---------- */
+.app-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; }
+.app-card{
+  background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:14px; padding:22px;
+  display:flex; gap:16px;
+}
+.app-card .mark{
+  font-family:var(--font-mono); color:var(--violet-glow); font-weight:600;
+  font-size:14px; flex-shrink:0;
+}
+.app-card h3{ font-size:15.5px; margin-bottom:6px; }
+.app-card p{ font-size:13.5px; color:var(--text-muted); }
+
+/* ---------- referências bibliográficas ---------- */
+.ref-list{ display:flex; flex-direction:column; gap:0; }
+.ref-item{
+  padding:18px 0; border-bottom:1px solid var(--border-soft);
+  display:flex; gap:16px; font-size:14.5px;
+}
+.ref-item:last-child{ border-bottom:none; }
+.ref-item .ref-idx{ font-family:var(--font-mono); color:var(--text-faint); flex-shrink:0; width:24px; }
+.ref-item a{ color:var(--violet-glow); }
+.ref-item a:hover{ text-decoration:underline; }
+.ref-item .meta{ color:var(--text-muted); }

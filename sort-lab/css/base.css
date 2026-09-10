@@ -1,0 +1,60 @@
+/* ==========================================================
+   base.css
+   Reset, tipografia padrão, container e utilitários globais
+   (acessibilidade, blobs decorativos). Nada específico de
+   uma página ou componente entra aqui.
+   ========================================================== */
+
+*, *::before, *::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+ul{ margin:0; padding:0; list-style:none; }
+h1, h2, h3, h4{ font-family:var(--font-display); font-weight:600; margin:0; letter-spacing:-0.01em; }
+p{ margin:0; }
+
+/* acessibilidade: foco visível para navegação por teclado */
+:focus-visible{
+  outline:2px solid var(--violet-glow);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* respeita a preferência do usuário por menos animação */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration:0.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+.container{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 28px;
+}
+
+/* ---------- blobs decorativos (usados no hero da home e do módulo) ---------- */
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(2px);
+  z-index:0;
+  pointer-events:none;
+}
+.blob-purple{ background:radial-gradient(circle at 30% 30%, var(--violet-glow), var(--purple) 55%, var(--purple-deep) 100%); }
+.blob-blue{ background:radial-gradient(circle at 30% 30%, #7b86ff, var(--blue) 55%, #2f3596 100%); }
